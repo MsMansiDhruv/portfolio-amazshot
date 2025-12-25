@@ -1,0 +1,7 @@
+{
+  "name": "amazhot-portfolio",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve src"
+  }
+}

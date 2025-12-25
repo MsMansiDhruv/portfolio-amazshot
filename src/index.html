@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Amazhot — Photography by Soham Bhatt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  
+</head>
+
+<body>
+
+<!-- INTRO -->
+<!-- <div id="intro-overlay">
+  <div class="intro-frame">
+    <img src="./images/caricature/caricature.png" class="intro-caricature" />
+    <div class="intro-title">
+      <h1>Amazhot</h1>
+      <p>Photography by Soham Bhatt</p>
+    </div>
+  </div>
+</div> -->
+
+<!-- LEFT RAIL -->
+<div class="side-rail left">
+  <button id="themeToggle" class="rail-btn">
+    <span>Light</span>
+    <span class="rail-divider"></span>
+    <span>Dark</span>
+  </button>
+</div>
+
+<!-- RIGHT RAIL -->
+<div class="side-rail right">
+  <a href="#" class="rail-link social">
+    <span>Instagram</span>
+  </a>
+  <span class="rail-divider"></span>
+
+  <a href="#" class="rail-link social">
+    <span>YouTube</span>
+  </a>
+</div>
+
+<header>
+  <div class="brand">
+    <h1>Amazhot</h1>
+    <span>Photography by Soham Bhatt</span>
+  </div>
+</header>
+
+<main>
+   <!-- INTRO / STATEMENT -->
+  <section class="intro intro-cinematic">
+    <h1 class="intro-title">
+      HELLO, I’M SOHAM BHATT,
+      <span class="intro-muted">
+        PHOTOGRAPHER, EDITOR </br> & FILM DIRECTOR
+      </span>
+    </h1>
+
+    <!-- <p class="intro-subtitle">
+      BASED IN GUJARAT, INDIA
+    </p> -->
+
+    <div class="intro-actions">
+      <a href="#collections">View Collections</a>
+      <a href="#portfolio">View Portfolio</a>
+    </div>
+  </section>
+
+
+<!-- RECENT WORK -->
+  <section class="recent-work">
+    <h2 class="section-title">Recent Work</h2>
+
+    <div class="recent-grid" id="recentGrid"></div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> Amazhot
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="imageModal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-frame">
+    <img id="modalImage" />
+    <div class="shot-meta" id="shotMeta"></div>
+  </div>
+</div>
+
+<script src="./js/theme.js"></script>
+<script src="./js/portfolio-data.js"></script>
+<script src="./js/recent.js"></script>
+<!-- <script src="./js/gallery-data.js"></script> 
+<script src="./js/gallery.js"></script>
+<script src="./js/modal.js"></script>
+<script src="./js/intro.js"></script> -->
+
+</body>
+</html>

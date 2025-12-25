@@ -1,0 +1,422 @@
+:root {
+  --bg: #f6f5f2;
+  /* warm off-white (luxury paper tone) */
+  --text: #111;
+  --muted: #666;
+  --border: #e2e2df;
+  --card: #ffffff;
+  /* modal tokens */
+  --modal-bg: rgba(247, 247, 245, 0.94);
+  --modal-shadow: rgba(0, 0, 0, 0.25);
+  --content-width: 1400px;
+  --line-color: rgba(0,0,0,0.15);
+
+    /* ================= FONT SYSTEM ================= */
+
+  --font-display: "Oswald", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --font-weight-display: 400;
+  --font-weight-display-muted: 300;
+
+  --font-weight-body: 400;
+}
+
+.dark {
+  --bg: #0c0c0c;
+  /* near-black, not pure black */
+  --text: #f2f2f2;
+  --muted: #9a9a9a;
+  --border: #262626;
+  --card: #141414;
+  --modal-bg: rgba(0, 0, 0, 0.92);
+  --modal-shadow: rgba(0, 0, 0, 0.85);
+  --line-color: rgba(255,255,255,0.15);
+}
+
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.4s ease, color 0.4s ease;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ================================================= CONTINUOUS EDITORIAL BACKGROUND ================================================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background:
+    linear-gradient(to right, var(--line-color) 1px, transparent 1px),
+    linear-gradient(to right, var(--line-color) 1px, transparent 1px),
+    linear-gradient(to right, var(--line-color) 1px, transparent 1px);
+
+  background-size:
+    calc(var(--content-width) / 3) 100%,
+    calc(var(--content-width) / 3) 100%,
+    calc(var(--content-width) / 3) 100%;
+
+  background-position:
+    calc(50% - var(--content-width)/2 + var(--content-width)/3) 0,
+    calc(50% - var(--content-width)/2 + 2*var(--content-width)/3) 0,
+    calc(50% - var(--content-width)/2 + var(--content-width)) 0;
+
+  opacity: 0.15;
+}
+
+
+.dark body::before {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(255,255,255,0.15) 1px,
+      transparent 1px
+    );
+}
+
+/* ================================================= FILM / PAPER TEXTURE ================================================= */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  opacity: 0.65;
+}
+
+/* ================================================= TYPOGRAPHY ================================================= */
+h1,
+h2 {
+  font-family: var(--font-display);
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+/* ================================================= HEADER ================================================= */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand span {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: var(--muted);
+}
+
+/* ================================================= LAYOUT ================================================= */
+main {
+  max-width: var(--content-width);
+  margin: auto;
+  padding: 0 20px;
+}
+
+.hero {
+  text-align: center;
+  margin: 110px auto 120px;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  letter-spacing: -0.5px;
+}
+
+.hero p {
+  color: var(--muted);
+  margin-top: 12px;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ================================================= CINEMATIC INTRO OVERLAY ================================================= */
+#intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+#intro-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-frame {
+  position: relative;
+  text-align: center;
+  color: #f2f2f2;
+  animation: introFadeIn 1.2s ease forwards;
+}
+
+.intro-caricature {
+  max-width: 320px;
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  animation: caricatureIn 1.2s ease forwards 0.6s;
+}
+
+.intro-title {
+  margin-top: 24px;
+  opacity: 0;
+  animation: titleIn 1s ease forwards 1.6s;
+}
+
+.intro-title h1 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+}
+
+.intro-title p {
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-top: 6px;
+}
+
+/* ================================================= INTRO REPLAY ================================================= */
+.intro-replay {
+  margin-top: 12px;
+}
+
+.intro-replay button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 0.2s ease;
+}
+
+.intro-replay button:hover {
+  opacity: 0.85;
+}
+
+/* ================================================= INTRO ANIMATIONS ================================================= */
+@keyframes introFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes caricatureIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes titleIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================================================= SIDE RAILS (LEFT + RIGHT) ================================================= */
+.side-rail {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.side-rail.left {
+  left: 0;
+}
+
+.side-rail.right {
+  right: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+}
+
+.side-rail>* {
+  pointer-events: auto;
+}
+
+/* LEFT — THEME TOGGLE */
+.rail-btn {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: none;
+  border: none;
+  padding: 0;
+
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+
+  color: var(--muted);
+  cursor: pointer;
+
+  transition: color 0.25s ease;
+}
+
+.rail-btn:hover {
+  opacity: 1;
+}
+
+
+.rail-divider {
+  width: 1px;
+  height: 26px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+/* LIGHT MODE ACTIVE */
+html:not(.dark) .rail-btn span:first-child {
+  color: var(--text);
+  opacity: 1;
+}
+
+/* LIGHT MODE INACTIVE */
+html:not(.dark) .rail-btn span:last-child {
+  opacity: 0.35;
+}
+
+/* DARK MODE ACTIVE */
+html.dark .rail-btn span:last-child {
+  color: var(--text);
+  opacity: 1;
+}
+
+/* DARK MODE INACTIVE */
+html.dark .rail-btn span:first-child {
+  opacity: 0.35;
+}
+
+/* RIGHT — SOCIAL LINKS */
+.rail-link.social {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 12px;
+
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: var(--text);
+
+  /* 🔑 BACKDROP FIX */
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(6px);
+
+  opacity: 0.6;
+
+  transition:
+    opacity 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.rail-link.social:hover {
+  opacity: 1;
+  border-color: currentColor;
+  transform: rotate(180deg) scale(1.05);
+}
+
+.rail-link.social svg {
+  width: 16px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.rail-link.social svg polygon {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ================================================= HIDE RAILS DURING FULLSCREEN MODAL ================================================= */
+.modal.active~.side-rail {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.editorial-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.hero-title .editorial-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.75rem;
+  /* slightly smaller than rails */
+  letter-spacing: 3.5px;
+}

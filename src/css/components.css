@@ -1,0 +1,312 @@
+/* =================================================
+   INTRO — FINAL (BRIAN-STYLE, STABLE)
+================================================= */
+.intro {
+  max-width: 1400px;
+  min-height: 85vh;              /* 🔑 full-page feel */
+  margin: 0 auto;
+  padding: 140px 32px 120px;     /* top-heavy like Brian */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+
+/* .intro::after {
+  content: "";
+  width: 80px;
+  height: 1px;
+  margin: 48px auto 0;
+  background: currentColor;
+  opacity: 0.2;
+} */
+
+/* MAIN HEADLINE */
+.intro-title {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
+
+  font-size: clamp(4.2rem, 6vw, 5.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ROLE — SAME LINE, QUIETER */
+.intro-title .intro-muted {
+  display: inline-block;
+
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 400;
+
+  font-size: clamp(4.2rem, 6vw, 5.4rem);       /* 🔑 smaller, not equal */
+  letter-spacing: -0.025em;  /* 🔑 tighter than before */
+  line-height: 1.04;
+  color: var(--muted);
+  vertical-align: baseline;
+  opacity: 0.7;
+}
+
+/* LOCATION */
+.intro-subtitle {
+  margin-top: 26px;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+}
+
+/* ACTION LINKS */
+.intro-actions {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  margin-top: 44px;
+}
+
+.intro-actions a {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: var(--text);
+  opacity: 0.45;
+
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+
+  transition: opacity 0.25s ease;
+}
+
+.intro-actions a:hover {
+  opacity: 1;
+}
+
+/* MOBILE — STACK GRACEFULLY */
+@media (max-width: 768px) {
+  .intro-title {
+    font-size: clamp(2.8rem, 8vw, 3.6rem);
+    line-height: 1.08;
+  }
+
+  .intro-title .intro-muted {
+    display: block;
+    margin: 14px 0 0;
+    font-size: 0.52em;
+    letter-spacing: 0.16em;
+  }
+}
+
+
+/* =================================================
+   RECENT WORK
+================================================= */
+
+.recent-work {
+  max-width: 1160px;
+  margin: 0 auto 220px;
+  padding: 25px 24px 0;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  margin-bottom: 96px;
+
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;     /* tighter than buttons */
+}
+
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  margin: 28px auto 0;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+/* =================================================
+   TRUE MASONRY GRID (BRIAN STYLE)
+================================================= */
+
+.recent-grid {
+  column-count: 3;
+  column-gap: 32px;
+  column-fill: balance;
+  padding-bottom: 120px;
+}
+
+/* =================================================
+   RECENT CARD
+================================================= */
+
+.recent-card {
+  break-inside: avoid;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.recent-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+
+  backface-visibility: hidden;
+  transform: translateZ(0);
+
+  transition:
+    filter 0.45s ease,
+    transform 0.6s ease;
+}
+
+.recent-card:hover img {
+  filter: grayscale(100%);
+  transform: scale(1.025);
+}
+
+/* =================================================
+   META OVERLAY
+================================================= */
+
+.recent-card .work-meta {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  padding: 18px;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.0) 60%
+  );
+
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.recent-card:hover .work-meta {
+  opacity: 1;
+}
+
+.recent-card .work-meta h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.recent-card .work-meta span {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+/* =================================================
+   VERTICAL STAGGER
+================================================= */
+
+.recent-card:nth-child(3n + 2) {
+  margin-top: 28px;
+}
+
+.recent-card:nth-child(3n + 3) {
+  margin-top: 36px;
+}
+
+/* =================================================
+   RESPONSIVE
+================================================= */
+
+@media (max-width: 1100px) {
+  .recent-grid {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .recent-grid {
+    column-count: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro {
+    min-height: 75vh;
+    padding: 120px 24px 100px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 72px;
+  }
+
+  .recent-work {
+    padding-top: 140px;
+  }
+}
+
+
+/* =================================================
+   CINEMATIC TEXT REVEAL
+================================================= */
+
+.intro-title,
+.intro-subtitle,
+.intro-actions {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: creditIn 1.2s ease forwards;
+}
+
+.intro-title {
+  animation-delay: 0.4s;
+}
+
+.intro-subtitle {
+  animation-delay: 0.9s;
+}
+
+.intro-actions {
+  animation-delay: 1.4s;
+}
+
+@keyframes creditIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.side-rail.right {
+  right: clamp(2px, 0.3vw, 6px);
+}
+
+.side-rail.left {
+  left: clamp(2px, 0.3vw, 6px);
+}

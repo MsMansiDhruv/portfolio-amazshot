@@ -1,0 +1,11 @@
+:root {
+  --bg: #f6f5f2;
+  --text: #111;
+  --muted: #666;
+}
+
+.dark {
+  --bg: #0c0c0c;
+  --text: #f2f2f2;
+  --muted: #999;
+}
